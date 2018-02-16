@@ -1,13 +1,15 @@
 {
-  "name": "sails-mongo",
-  "version": "1.0.0-11",
-  "description": "Mongo DB adapter for Sails.js/Waterline.",
-  "main": "./lib",
+  "name": "sails-google-cloud-datastore",
+  "version": "1.0.0",
+  "description": "Google Cloud Datastore adapter for Sails.js/Waterline.",
+  "main": "./lib/",
   "scripts": {
-    "test": "npm run lint && npm run custom-tests",
-    "custom-tests": "node ./node_modules/mocha/bin/mocha test/run-adapter-specific-tests && node ./node_modules/mocha/bin/mocha test/connectable/ && node test/run-standard-tests",
+    "test": "npm run lint && $(gcloud beta emulators datastore env-init) && npm run custom-tests",
+    "custom-tests": "node test/",
+    "old_test": "npm run lint && npm run custom-tests",
+    "old_custom-tests": "node ./node_modules/mocha/bin/mocha test/run-adapter-specific-tests && node ./node_modules/mocha/bin/mocha test/connectable/ && node test/run-standard-tests",
     "lint": "node ./node_modules/eslint/bin/eslint . --max-warnings=0",
-    "docker": "docker-compose run adapter bash"
+    "datastore-emulator": "gcloud beta emulators datastore start"
   },
   "keywords": [
     "mongo",
@@ -26,6 +28,7 @@
     "url": "git://github.com/balderdashy/sails-mongo.git"
   },
   "dependencies": {
+    "@google-cloud/datastore": "^1.3.4",
     "@sailshq/lodash": "^3.10.2",
     "async": "2.0.1",
     "flaverr": "1.1.1",
@@ -47,21 +50,6 @@
       "queryable",
       "associations"
     ],
-    "features": [
-      "unique"
-    ]
-  },
-  "machinepack": {
-    "friendlyName": "MongoDB",
-    "extendedDescription": "Uses the Node.js mongdb driver located at http://npmjs.com/package/mongodb",
-    "moreInfoUrl": "https://github.com/mongodb/node-mongodb-native",
-    "implements": [
-      "connectable",
-      "modeled",
-      "migratable"
-    ],
-    "machineDir": "lib/private/machines/",
-    "exportStyle": "dryDictionary",
-    "testsUrl": "https://travis-ci.org/balderdashy/sails-mongo"
+    "features": []
   }
 }

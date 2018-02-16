@@ -1,4 +1,4 @@
-var assert = require('assert');
+/*var assert = require('assert');
 var _ = require('@sailshq/lodash');
 var Waterline = require('waterline');
 var waterlineUtils = require('waterline-utils');
@@ -776,3 +776,4 @@ function createModel (identity, options) {
 
 }
 
+*/

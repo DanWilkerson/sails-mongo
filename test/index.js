@@ -45,23 +45,6 @@ console.log('> More info about building Waterline adapters:');
 console.log('> http://sailsjs.com/docs/concepts/extending-sails/adapters/custom-adapters');
 
 
-// Ensure a `url` was specified.
-// (http://sailsjs.com/config/datastores#?the-connection-url)
-if (!process.env.WATERLINE_ADAPTER_TESTS_URL) {
-  console.error();
-  console.error('-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-');
-  console.error('Cannot run tests: No database connection `url` specified.');
-  console.error();
-  console.error('Tip: You can use an environment variable to configure this.');
-  console.error('For example:');
-  console.error('```');
-  console.error('    WATERLINE_ADAPTER_TESTS_URL=root@localhost/testdb npm test');
-  console.error('```');
-  console.error('-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-');
-  process.exit(1);
-}//-•
-
-
 // Use the `waterline-adapter-tests` module to
 // run mocha tests against the specified interfaces
 // of the currently-implemented Waterline adapter API.
@@ -72,7 +55,7 @@ new TestRunner({
 
   // Adapter config to use for tests.
   config: {
-    url: process.env.WATERLINE_ADAPTER_TESTS_URL,
+    projectId: 'foo',
   },
 
   // The set of adapter interface layers & specific features to test against.
@@ -101,4 +84,3 @@ new TestRunner({
 // to an adapter maintainer @ http://sailsjs.com/support.
 //
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
