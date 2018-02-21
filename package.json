@@ -4,12 +4,12 @@
   "description": "Google Cloud Datastore adapter for Sails.js/Waterline.",
   "main": "./lib/",
   "scripts": {
-    "test": "npm run datastore-emulator && npm run custom-tests && pkill -f emulators/datastore",
+    "test": "npm run datastore-emulator && $(gcloud beta emulators datastore env-init) && npm run custom-tests && pkill -f emulators/datastore",
     "custom-tests": "node test/",
     "old_test": "npm run lint && npm run custom-tests",
     "old_custom-tests": "node ./node_modules/mocha/bin/mocha test/run-adapter-specific-tests && node ./node_modules/mocha/bin/mocha test/connectable/ && node test/run-standard-tests",
     "lint": "node ./node_modules/eslint/bin/eslint . --max-warnings=0",
-    "datastore-emulator": "gcloud beta emulators datastore --quiet start --no-store-on-disk & $(gcloud beta emulators datastore env-init)"
+    "datastore-emulator": "gcloud beta emulators datastore --quiet start --no-store-on-disk &"
   },
   "keywords": [
     "mongo",
